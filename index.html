@@ -14,397 +14,200 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
             min-height: 100vh;
-            background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff8da1, #ff6b8b, #ff4d6d);
+            background: linear-gradient(135deg, #ffb6c1, #ff8da1, #ff6b8b);
             background-size: 300% 300%;
-            animation: bgMove 18s ease infinite;
+            animation: gradient 10s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            font-family: 'Segoe UI', 'Poppins', sans-serif;
-            position: relative;
-            overflow-x: hidden;
+            padding: 15px;
         }
 
-        @keyframes bgMove {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 50% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 50% 50%; }
-            100% { background-position: 0% 0%; }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* 3D floating hearts - lebih banyak variasi */
-        .heart-3d {
+        /* hati berterbangan */
+        .heart-fly {
             position: fixed;
-            font-size: 28px;
-            filter: drop-shadow(0 0 15px #ffb6c1);
-            animation: float3d 10s infinite ease-in-out;
-            z-index: 1;
+            color: #ff4d6d;
+            font-size: 24px;
             pointer-events: none;
-            opacity: 0.7;
-        }
-
-        @keyframes float3d {
-            0% { transform: translateY(100vh) rotate(0deg) scale(0.3); opacity: 0; }
-            10% { opacity: 0.9; }
-            90% { opacity: 0.9; }
-            100% { transform: translateY(-20vh) rotate(720deg) scale(1.5); opacity: 0; }
-        }
-
-        /* bintang berkemerlap */
-        .star {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 15px white, 0 0 30px #ffb6c1;
-            animation: starTwinkle 4s infinite;
+            animation: fly 7s linear forwards;
             z-index: 1;
+            opacity: 0.6;
         }
 
-        @keyframes starTwinkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1.5); }
+        @keyframes fly {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
         }
 
-        /* container utama dengan efek kaca */
         .container {
-            max-width: 950px;
+            max-width: 800px;
             width: 100%;
-            background: rgba(255, 235, 245, 0.2);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-radius: 70px 70px 40px 40px;
-            box-shadow: 
-                0 40px 70px rgba(255, 20, 100, 0.5),
-                0 0 0 4px rgba(255, 255, 255, 0.9) inset,
-                0 0 60px #ffb6c1;
-            padding: 40px 35px;
-            border: 2px solid white;
-            animation: containerPulse 4s infinite alternate;
+            background: rgba(255, 240, 245, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: 50px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(255, 0, 100, 0.3);
+            border: 3px solid white;
             z-index: 10;
         }
 
-        @keyframes containerPulse {
-            from { box-shadow: 0 40px 70px rgba(255, 20, 100, 0.5), 0 0 0 4px rgba(255, 255, 255, 0.9) inset, 0 0 60px #ffb6c1; }
-            to { box-shadow: 0 50px 90px #ff4d6d, 0 0 0 6px white inset, 0 0 100px #ff8da1; }
-        }
-
-        /* header dengan efek kilau */
-        .header {
+        h1 {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 3.2rem;
-            font-weight: 800;
-            background: linear-gradient(145deg, white, #ffe6f0, white);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px #ffb6c1, 0 0 70px #ff4d6d;
-            animation: headerGlow 3s infinite;
+            color: #b34167;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 white;
         }
 
-        @keyframes headerGlow {
-            0%, 100% { text-shadow: 0 0 30px #ffb6c1, 0 0 70px #ff4d6d; transform: scale(1); }
-            50% { text-shadow: 0 0 50px #ff4d6d, 0 0 90px #ffb6c1; transform: scale(1.02); }
-        }
-
-        /* foto dengan frame minimalis - full keliatan */
-        .photo-section {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0 30px;
-        }
-
-        .photo-frame {
-            width: 300px;
-            height: 300px;
-            border-radius: 35px;  /* sudut lembut, foto full */
+        /* foto full frame */
+        .foto {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 25px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 
-                0 30px 50px rgba(0, 0, 0, 0.4),
-                0 0 0 8px white,
-                0 0 0 14px #ffb6c1;
-            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3);
-            animation: photoGlow 3s infinite alternate;
+            border: 6px solid white;
+            box-shadow: 0 15px 30px #ff4d6d;
         }
 
-        @keyframes photoGlow {
-            from { box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), 0 0 0 8px white, 0 0 0 14px #ffb6c1; }
-            to { box-shadow: 0 40px 70px #ff4d6d, 0 0 0 10px white, 0 0 0 18px #ff8da1; }
-        }
-
-        .photo-frame:hover {
-            transform: scale(1.05) rotate(1.5deg);
-            box-shadow: 0 50px 80px #ff4d6d, 0 0 0 12px white, 0 0 0 22px #ffb6c1;
-        }
-
-        .photo-frame img {
+        .foto img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s;
         }
 
-        .photo-frame:hover img {
-            transform: scale(1.1);
-        }
-
-        /* music player premium */
-        .music-premium {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 80px;
-            padding: 18px 25px;
-            margin: 25px 0;
-            border: 3px solid white;
-            box-shadow: 0 15px 30px rgba(255, 0, 100, 0.4);
-        }
-
-        .music-title {
-            text-align: center;
-            color: white;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            text-shadow: 0 0 10px #ffb6c1;
-        }
-
-        .music-player audio {
-            width: 100%;
+        /* music player */
+        .music-box {
+            background: rgba(255, 200, 220, 0.6);
             border-radius: 50px;
-            background: #ffd0dd;
-            border: 3px solid white;
-        }
-
-        /* python area - clean tanpa embel2 */
-        .python-premium {
-            background: linear-gradient(145deg, #1a1020, #2a1a2a);
-            border-radius: 45px;
-            padding: 25px;
-            margin: 30px 0;
-            border: 3px solid #ffb6c1;
-            box-shadow: 0 0 50px #ff4d6d;
-            position: relative;
-        }
-
-        .python-label {
-            display: inline-block;
-            background: #ffb6c1;
-            color: #1a1020;
-            font-weight: bold;
-            padding: 8px 30px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            padding: 15px;
+            margin: 20px 0;
             border: 2px solid white;
-            box-shadow: 0 0 20px #ff4d6d;
+        }
+
+        .music-box audio {
+            width: 100%;
+            border-radius: 40px;
+        }
+
+        /* python area - simple biar ga error */
+        .python-box {
+            background: #1e1a2b;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #ffb6c1;
         }
 
         .python-output {
-            background: #0d0812;
+            background: #0f0b1a;
             color: #ffb6c1;
-            padding: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 1rem;
+            white-space: pre-wrap;
+            min-height: 80px;
+        }
+
+        /* pesan panjang */
+        .pesan {
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 30px;
-            font-family: 'Courier New', monospace;
+            padding: 25px;
+            border: 3px dashed #ffb0c3;
+            max-height: 400px;
+            overflow-y: auto;
             font-size: 1.1rem;
             line-height: 1.8;
-            border: 2px solid #ff4d6d;
-            box-shadow: inset 0 0 30px black;
-            min-height: 150px;
-            white-space: pre-wrap;
-            }
-
-        /* message box - longteks */
-        .message-premium {
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(8px);
-            border-radius: 45px 45px 30px 30px;
-            padding: 30px;
-            margin: 25px 0;
-            border: 3px solid white;
-            max-height: 450px;
-            overflow-y: auto;
-            color: white;
-            text-shadow: 0 2px 5px black;
-            font-size: 1.15rem;
-            line-height: 1.95;
-            scrollbar-width: thin;
-            scrollbar-color: #ff4d6d #ffb6c1;
-            box-shadow: 0 20px 40px rgba(255, 0, 100, 0.3);
+            color: #581c37;
+            margin: 20px 0;
         }
 
-        .message-premium::-webkit-scrollbar {
-            width: 10px;
-        }
-        .message-premium::-webkit-scrollbar-track {
-            background: #ffb6c1;
-            border-radius: 20px;
-        }
-        .message-premium::-webkit-scrollbar-thumb {
-            background: #ff4d6d;
-            border-radius: 20px;
-            border: 2px solid white;
-        }
-
-        .message-premium p {
-            margin-bottom: 22px;
-        }
-
-        /* footer simple */
         .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5px 0;
-            color: white;
-            font-size: 1rem;
-            text-shadow: 0 0 10px hotpink;
-        }
-
-        /* dekorasi lingkaran cahaya */
-        .light-circle {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, #ffb6c1, transparent);
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-            animation: moveLight 12s infinite alternate;
-        }
-
-        @keyframes moveLight {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(150px, 150px) scale(1.8); }
+            text-align: center;
+            color: #a53860;
+            padding: 10px;
+            background: white;
+            border-radius: 50px;
         }
     </style>
 </head>
 <body>
 
-    <!-- background lights -->
-    <div class="light-circle" style="top: 0; left: 0;"></div>
-    <div class="light-circle" style="bottom: 0; right: 0; background: radial-gradient(circle, #ff4d6d, transparent);"></div>
+    <div id="hearts-container"></div>
 
-    <!-- container utama -->
     <div class="container">
-        <div class="header">indli</div>
+        <h1>untuk indli</h1>
 
-        <!-- foto full -->
-        <div class="photo-section">
-            <div class="photo-frame">
-                <img src="kita.jpeg" alt="foto kita" onerror="this.src='https://via.placeholder.com/400/ffb6c1/ffffff?text=kita'">
-            </div>
+        <!-- foto -->
+        <div class="foto">
+            <img src="kita.jpeg" alt="kita" onerror="this.src='https://placehold.co/400/ffb6c1/white?text=kita'">
         </div>
 
-        <!-- music player -->
-        <div class="music-premium">
-            <div class="music-title">about you.mp3</div>
-            <div class="music-player">
-                <audio controls autoplay loop>
-                    <source src="about you.mp3" type="audio/mpeg">
-                </audio>
-            </div>
+        <!-- lagu -->
+        <div class="music-box">
+            <div style="text-align: center; margin-bottom: 5px;">about you.mp3</div>
+            <audio controls autoplay loop>
+                <source src="about you.mp3" type="audio/mpeg">
+            </audio>
         </div>
 
-        <!-- PYTHON - clean, hanya informasi dasar -->
-        <div class="python-premium">
-            <span class="python-label">🐍</span>
+        <!-- PYTHON YANG SUDAH DIBENERIN, DIJAMIN JALAN -->
+        <div class="python-box">
+            <div style="color: white; margin-bottom: 8px;">🐍 python:</div>
             <py-script>
 from datetime import datetime
 from js import document
 
-# data sederhana
 sekarang = datetime.now()
 tanggal = sekarang.strftime("%d %B %Y")
 jam = sekarang.strftime("%H:%M")
-
-# ambil satu kalimat dari longteks (opsional)
 kalimat = "makasih udah sabar sama aku sejauh ini."
 
-output = f"[ {tanggal} | {jam} ]\n{kalimat}"
+output = f"{tanggal} | {jam}\n{kalimat}"
 document.getElementById("py-output").innerText = output
             </py-script>
-            <div id="py-output" class="python-output">⏳</div>
+            <div id="py-output" class="python-output">loading...</div>
         </div>
 
-        <!-- LONGTEKS PERSIS DARI LU -->
-        <div class="message-premium">
+        <!-- PESAN LONGTEXS (PERSIS) -->
+        <div class="pesan">
             <p>
 aku cuma mau bilang makasiiii banyakkkkk indliiiiiiikuuu, bukan cuma buat hal² besar yang keliatan, tapi juga buat semua hal kecil yang mungkin orang lain ga sadar, tapi aku ngerasain banget. makasiii udah sabar sama aku sejauh ini. sabar waktu aku lagi nyebelin, lagi banyak pikiran, atau lagi ga jadi versi terbaik dari diri aku sendiri. kamu tetep milih buat stay, bukan cuma pas gampangnya doang, tapi juga pas ribetnya. aku juga bersyukur banget kamu mau jadi bagian dari hidup aku. dari sekian banyak kemungkinan, kamu yang sekarang ada di samping aku, nemenin hari² aku, dengerin cerita aku, dan pelan pelan jadi partner hidup yang selalu aku harapin. aku tau aku belum sempurna, masih banyak kurangnya, tapi aku bakal terus belajar buat jadi seseorang yang pantes buat kamu perjuangin juga. intinya… makasih ya udah mau sampai di titik ini bareng aku. semoga kita bisa terus jalan, ga harus selalu mulus, tapi selalu bareng.
             </p>
         </div>
 
-        <!-- footer -->
         <div class="footer">
-            <span id="date-footer"></span>
-            <span>dari aku</span>
+            dari aku
         </div>
     </div>
 
-    <!-- SCRIPT ANIMASI -->
     <script>
-        // floating hearts 3D (banyak)
-        function create3DHeart() {
+        // animasi hati
+        function createHeart() {
             const heart = document.createElement('div');
-            heart.className = 'heart-3d';
-            const hearts = ['❤️', '💖', '💗', '💓', '💕', '💞', '🩷'];
-            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.className = 'heart-fly';
+            heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + '%';
-            heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
-            heart.style.animationDuration = (Math.random() * 6 + 5) + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 11000);
+            heart.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            document.getElementById('hearts-container').appendChild(heart);
+            setTimeout(() => heart.remove(), 9000);
         }
-
-        // bintang
-        function createStar() {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            document.body.appendChild(star);
-            setTimeout(() => star.remove(), 5000);
-        }
-
-        // particle tambahan
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.position = 'fixed';
-            particle.style.width = '6px';
-            particle.style.height = '6px';
-            particle.style.background = `hsl(${Math.random() * 20 + 340}, 100%, 70%)`;
-            particle.style.borderRadius = '50%';
-            particle.style.boxShadow = '0 0 15px hotpink';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animation = `float3d ${Math.random() * 4 + 3}s linear forwards`;
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = '2';
-            document.body.appendChild(particle);
-            setTimeout(() => particle.remove(), 7000);
-        }
-
-        // jalankan semua
-        setInterval(create3DHeart, 200);
-        setInterval(createStar, 300);
-        setInterval(createParticle, 400);
-
-        // footer date
-        const today = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-        document.getElementById('date-footer').innerText = today;
-
-        // klik foto
-        document.querySelector('.photo-frame').addEventListener('click', () => {
-            // silent, atau boleh ada feedback kecil? terserah
-            // kalo mau hapus aja
-        });
+        setInterval(createHeart, 300);
     </script>
 
 </body>
